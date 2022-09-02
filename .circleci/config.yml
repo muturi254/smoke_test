@@ -36,4 +36,5 @@ jobs:
 workflows:
   smoke_tests:
     jobs:
+      - create_infrastructure  
       - smoke_test
