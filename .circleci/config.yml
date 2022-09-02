@@ -1,0 +1,26 @@
+version: 2.1
+
+
+jobs:
+  smoke_test:
+    docker:
+      - image: alphine:latest
+    steps:
+      - run: apk add --update curl
+      - run:
+          name: smoke test
+          command: |
+            URL="https://blog.udacity.com/"
+            # test if
+            if curl -s --head ${URL}
+            then
+              return 0
+            else
+              return 1
+            fi
+
+
+workflows:
+  smoke_tests:
+    jobs:
+      - smoke_test
